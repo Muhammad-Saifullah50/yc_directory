@@ -9,10 +9,10 @@ export default async function Home({ searchParams }: {
 
   const posts = [
     {
-      _createdAt: "Yesterday",
+      _createdAt: new Date(),
       _id: "1",
       views: 55,
-      author: { _id: 1 },
+      author: { _id: 1, name: 'sasasass' },
       title: "Pitch Your Startup",
       description: "Connect With Entrepreneurs",
       image: "https://picsum.photos/seed/picsum/200/300",
@@ -35,11 +35,14 @@ export default async function Home({ searchParams }: {
         </p>
 
         <ul className="mt-7 card_grid">
-          {posts?.length ? 0 && posts.map((post, index: number) => {
+          {posts?.length > 0 ? posts.map((post) => {
             return (
-              <StartupCard />
+              <StartupCard
+                key={post._id}
+                post={post}
+              />
             )
-          }) : (
+          }):  (
             <p>No startups found</p>
           )}
         </ul>
